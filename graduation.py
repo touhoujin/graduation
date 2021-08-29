@@ -1,7 +1,7 @@
-title = "佳一中18班毕业去向图"
+title = "佳一中2021届18班毕业去向图"
 
 import json
-from geopy.geocoders import Nominatim
+from baidugeo import Geocoder
 
 from pyecharts import options as opts
 from pyecharts.charts import Geo
@@ -12,23 +12,22 @@ students_data = {}
 with open("students.json", "r", encoding="utf-8") as f:
     students_data = json.load(f)
 
-geocoder = Nominatim(user_agent="biyetu")
+g = Geocoder("t2dIEXo5A3at8GSCwLKaEsNVk6rFh3mH")
 #存储大学对应的省份, 经纬度, 学生
 school_data = {}
 
 for i in students_data.keys():
     try:
 
-        data = geocoder.geocode(i)
-        addr = data.address.replace(" ", "").split(",")
-        province = addr[-3] if addr[-2].isdigit() else addr[-2]
+        pos = g.encode(i)
+        addr = g.decode(*pos)
         school_data[i] = {
-            "province": province,
-            "pos": [data.longitude, data.latitude],
+            "province": addr["province"],
+            "pos": pos,
             "students": students_data[i]
             }
     except Exception as e:
-        print(f"查询学校 {i} 出错, 学校信息 {data}")
+        print(f"查询学校 {i} 出错, 学校信息 {e.args[0]}")
 
 print(school_data)
 
