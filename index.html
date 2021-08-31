@@ -7,12 +7,18 @@
         <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/china.js"></script>
 
 </head>
-<body>
-    <div id="75e31b2f90e346978bac3b6058985035" class="chart-container" style="width:900px; height:500px;"></div>
+<body onresize="resizeFresh()">  
+<style type="text/css">			
+            html,body{
+                height:100%;
+                width:100%
+            }
+</style>
+    <div id="985bb17584b143c09daca942a4a65f28" class="chart-container" style="width:95%; height:95%; margin:auto; top:30px"></div>
     <script>
-        var chart_75e31b2f90e346978bac3b6058985035 = echarts.init(
-            document.getElementById('75e31b2f90e346978bac3b6058985035'), 'white', {renderer: 'canvas'});
-        var option_75e31b2f90e346978bac3b6058985035 = {
+        var chart_985bb17584b143c09daca942a4a65f28 = echarts.init(
+            document.getElementById('985bb17584b143c09daca942a4a65f28'), 'white', {renderer: 'canvas'});
+        var option_985bb17584b143c09daca942a4a65f28 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -823,7 +829,14 @@
         "emphasis": {}
     }
 };
-        chart_75e31b2f90e346978bac3b6058985035.setOption(option_75e31b2f90e346978bac3b6058985035);
+        chart_985bb17584b143c09daca942a4a65f28.setOption(option_985bb17584b143c09daca942a4a65f28);
     </script>
+	<script>  
+         var x=window.innerWidth;
+     function resizeFresh(){
+         if(x!=window.innerWidth)
+             location.reload();
+     }
+	</script>
 </body>
 </html>
